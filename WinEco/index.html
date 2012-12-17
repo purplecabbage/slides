@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Cordova and the Windows EcoSystem</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Jesse MacFadyen">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Cordova - Windows - Ecosystem</h2>
+                    <h3></h3>
+                    <p><small>Jesse MacFadyen aka @purplecabbage</small></p>
+                </section>
+
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>About Me</h2>
+                      <ul>
+                          <li>I've been working on Windows Phone 7 for over a year</li>
+                          <li>More recently I have also been working on Windows Phone 8</li>
+                          <li>I've been working on Windows 8 for a while too</li>
+                          <li>I don't have a favorite color</li>
+                      </ul>
+                </section>          
+
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>About this presentation</h2>
+                    <h3>This presentation is:</h3>
+                    <ul>
+                        <li class="fragment">part marketing</li>
+                        <li class="fragment">part knowledge sharing</li>
+                        <li class="fragment">part opinion</li>
+                        <li class="fragment">part comedy <i class="fragment">(hopefully)</i></li>
+                        <li class="fragment">part propaganda</li>
+                        <li class="fragment">part wrong <i class="fragment">( probably )</i></li>
+                    </ul>
+                </section>
+                <!-- ========================================================= -->
+                <section>
+                    <h1>What is Windows?</h1>
+                    <p class="fragment"><strong>Windows</strong> is an operating system.</p>
+                    <p class="fragment"><strong>Windows</strong> runs on computers collectively called 'PCs'</p>
+                    
+                    <ul class="fragment">
+                        <li>laptops</li>
+                        <li>desktops</li>
+                        <li>tablets</li>
+                    </ul>
+                    
+                    <p class="fragment">I make fun of this, because Mac seems to be over-represented in the tech community these days. IMHO</p>
+                    <aside class="notes">
+                        In our emerging developer countries ( Russia, Brazil, India, China, ... ) 
+                        it is much more likely that developers are using Windows machines. Mainly because the hardware is cheaper.
+                    </aside>
+                    
+                </section>
+                <!-- ========================================================= -->
+                <section>
+                    <h1 >MacOS Only Platforms</h1>
+                    <ul>
+                        <li>iOS</li>
+                    </ul>
+                    
+                    <aside class="notes">All other supported devices have a windows story, including Cordova tooling.</aside>
+                </section>
+                <!-- ========================================================= -->                
+                <section>
+                    <h2>Windows Only Platforms</h2>
+                    <ul>
+                        <li>Windows Phone 7</li>
+                        <li>Windows Phone 8</li>
+                        <li>Windows 8</li>
+                    </ul>
+                </section>
+                
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h1>Windows Phone 7</h1>
+                    
+                    <p>The first non-WebKit PhoneGap supported device</p>
+                    <p>IE9</p>
+                    <ul>
+                        <li>finally a standards compliant browser</li>
+                        <li>developed in partnership with Microsoft</li>
+                        <li>issues with touch+scrolling</li>
+                        <li>no support for SVG, localStorage</li>
+                        <li>isolated storage woes</li>
+                        <li>elegant JS<=>C# communication</li>
+                    </ul>
+                </section>
+                
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>Windows Phone 7 Dev requirements</h2>
+                    
+                    <ul>
+                        <li>a windows machine</li>
+                        <li>emulator does not work well in VMs</li>
+                        <li>Visual Studio 2010 + Windows Phone 7 SDK</li>
+                        <li>AppHub membership</li>
+                    </ul>
+                    
+                    <p style="margin-top:20px;"><i>Apache Cordova full API support, minus a few exceptions ...</i></p>
+                    
+                </section>
+
+                <!-- ========================================================= -->
+
+                <section>
+                    <h2>The Windows Phone 7 Marketplace</h2>
+                    
+                    <ul>
+                        <li>interesting 'beta' functionality, up to 100 email addresses</li>
+                        <li>developers were reporting consistent sales until the announcement of WP8</li>
+                    </ul>
+                    
+                </section>
+                
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h1>Windows Phone 8</h1>
+                </section>    
+
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>Windows Phone 8</h2>
+                    
+                    <p>Cordova for WP8 was mostly implemented by 
+                        <a href="http://github.com/sgrebnov" target="_blank">Sergey</a> 
+                        and 
+                        <a href="http://github.com/rkokorev" target="_blank"> Ruslan</a>
+                    </p>
+                    
+                    <p>Microsoft supported development with access to devices, SDKs and technical expertise</p>
+                    <p>Landing in 2.3.0 next week ( Mid December 2012 ), blog posts coming soon.</p>
+                    
+                </section>
+                
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>Windows Phone 8 Dev requirements</h2>
+                    
+                    <ul>
+                        <li>Windows 8 Pro or better, to develop ( 64 bit ONLY )</li>
+                        <li>Emulator requires modern processor (Second Level Address Translation)</li>
+                        <li>Visual Studio 2012 + Windows Phone 8 SDK</li>
+                        <li>Emulator still does not work well in VMs (Hyper-V)</li>
+                    </ul>
+                    
+                    <p style="margin-top:20px;"><i>Apache Cordova full API support, minus a few exceptions ...</i></p>
+                    
+                </section>
+                
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>The new shiny</h2>
+                    <ul>
+                        <li>IE10</li>
+                        <li>MSPointer events and NOT touch events.</li>
+                        <li>no more need to unpack to IsolatedStorage</li>
+                        <li>SVG Support</li>
+                        <li>localStorage works when run from file://</li>
+                        <li>webWorkers, page visibility, navigation timing, typed arrays, requestAnimationFrame, indexedDB, async script loading event</li>
+                    </ul>
+                    
+                    <h3>strict javascript</h3>
+                    
+                    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+// Non-strict code...
+
+(function(){
+  "use strict";
+
+  // Define your library strictly...
+})();
+
+// Non-strict code...
+                        
+                    </code></pre>
+                </section>    
+                
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Windows Phone 8 HTML5 App Template</h2>
+                    
+                    <p>Microsoft actually documents how to communicate between JS + C#</p>
+                    <p>The template has issues</p>
+                    
+                </section>
+                
+                
+                    
+                <!-- ========================================================= -->
+                <section>
+                    <h2>The difference between Windows Phone 7 and 8</h2>
+                    <p>Windows Phone 8 devices run WP7 apps.</p>                    
+                    <p>I actually recommend that developers stick to Cordova for Windows Phone 7 for now.</p>
+                </section>
+                
+                <!-- ========================================================= -->                
+                
+                <section>
+                    <h2>Permissions in Windows Phone 7 + 8</h2>
+                    
+                    <p>Windows Phone 7 + 8 both use static analysis.</p>
+                    <p>There is also a permission manifest file.</p>
+                    <p>This determines what permissions to list on your app store page</p> 
+                    
+                    <p class="fragment"><i>ie Why does this Todo-list app require access to my contacts, or camera, or my identity?</i></p>
+
+                </section>
+                
+                <section>
+                    <p>Cordova for Windows Phone 7 + 8 gets around this in a couple of ways :</p>
+                    <ol>
+                        <li class="fragment">Do Nothing - Ignorance is bliss</li>
+                        <li class="fragment">The 'Standalone' project - exclude</li> 
+                        <li class="fragment">Import just what you need</li>
+                    </ol>
+                    
+                </section>
+                
+                <section>
+                    <h1>Windows 8</h1>
+                    <h2>Windows Store Applications</h2>
+                    <p>Formerly known as 'Metro'</p>
+                </section>    
+
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Windows 8</h2>
+                    <ul>
+                        <li>I started dev on my own, as a pet project</li>
+                        <li><a href=" http://01.org" target="_blank">Intel's Open Source team</a> was also interested, and started their own fork</li>
+                        <li>I merged our repos, and switched to a support role, while Intel completed the implementation</li>
+                        <li>docs are still in need of attention</li>
+                        <li>command line tooling is non-existent</li>
+                    </ul>
+                </section>
+                
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>Microsoft Embraces the Cordova way</h2>
+                    <ul>
+                        <li>javascript becomes a first class citizen in Windows 8</li>
+                        <li>cordova.js for windows 8 is a <i>simple?</i> translation layer</li>
+                        <li>there are no contacts in Windows 8 ( the People app does that )</li>
+                        <li>very cool binding of JS<=>C# and even JS<=>C++</li>
+   
+                </section>
+                <!-- ========================================================= -->
+                <section>
+                    <section>
+                        <h2>Promises</h2>
+                    
+                        <p>extensive use of the Promise API from common JS</p>
+                        http://msdn.microsoft.com/en-us/library/windows/apps/br211867(v=VS.85).aspx
+                        
+<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">                        
+aAsync()
+    .then(function () { return bAsync(); })
+    .then(function () { return cAsync(); })
+    .done(function () { finish(); });                        
+</code></pre>                         
+                    </section>
+
+                    <section>
+                        <h2>A Promise Example</h2>
+<pre><code contenteditable style="font-size: 18px; width:1000px;min-height:600px; margin-left:-100px; margin-top: 10px;">                      
+// Assign the URI to download from.
+var uriExample = new Windows.Foundation.Uri("http://www.microsoft.com");
+// Get the folder for temporary files.
+var tempFolder = Windows.Storage.ApplicationData.current.temporaryFolder;
+
+// Create the temp file asynchronously.
+tempFolder.createFileAsync("tempfile.txt").then( 
+  function (tempFile) {
+    // The createFileAsync call succeeded, so start the download operation.
+    var downloader = new Windows.Networking.BackgroundTransfer.BackgroundDownloader();
+    var transfer = downloader.createDownload(uriExample, tempFile);
+    return transfer.startAsync(); 
+  }).then(function (result) {
+     //Define the function to use when the download completes successfully
+     console.log("File download complete.");
+  },
+  // Define the error handling function.
+  function (error) {
+    console.log("File download failed.");
+  },
+  // Define the progress handling function.
+  function (result) {
+    console.log("Bytes retrieved: " + result.progress.bytesReceived);
+  });
+
+</code></pre>  
+                    </section>
+                </section>
+                
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>The Windows Store</h2>
+                    <p>Developers are being strongly encouraged by Microsoft</p>
+                    <ul>
+                        <li>The next gold-rush?</li>
+                        <li>40 million Windows 8 Licenses</li>
+                        <li>1500 different devices that run Windows 8</li>
+                    </ul>
+                </section>
+                
+                
+
+                <!-- ========================================================= -->
+                                
+                <section>
+                    <h2>Windows 8 Permissions</h2>
+                    <p>
+                    Windows 8 uses a permission manifest to specify your permissions.  
+                    This manifest determines what device APIs the browser exposes at runtime.  
+                    Static analysis is not required.
+                    </p>
+                </section>
+
+                <!-- ========================================================= -->
+
+                <section>
+                    <h2>Windows 8 Cordova pitfalls</h2>
+                     <h4>utf-8 encoding of files MUST contain BOM</h4>
+                     <p>Our current nodejs based builder for cordova-js needs to take this into account ( open issue in JIRA https://issues.apache.org/jira/browse/CB-2050 )</p>
+                </section>
+                
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>The Cordova-Windows TODO grab-bag</h2>
+                    <ul>
+                      <li>not a roadmap, because the roads are not defined</li>
+                      <li>not a list, because that implies order</li>
+                      <li>just some things I hope to get to, or someone gets to</li>
+                    </ul>
+                </section>
+                
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>TODO</h2>
+                    <ul>
+                        <li>Evaluate the entire app submission process.</li>
+                        <li>PhoneGap-Build integration?</li>
+                        <li>Explore combining WP7+8 native codebase</li>
+                        <li>CLI consistency</li>
+                        <li>Distribute Nuget projects, from PhoneGap.com?</li>
+                    </ul>    
+                </section>
+                
+                <!-- ========================================================= -->
+
+                <section>
+                    <h1>THE END</h1>
+                    <p class="fragment fade-in">... or is it?</p>
+                    <h3 class="fragment">Question Time</h3>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
