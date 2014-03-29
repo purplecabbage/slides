@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>PhoneGap/Cordova and Windows</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Jesse MacFadyen">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <!-- ========================================================= -->
+                <section>
+                    <h2>PhoneGap/Cordova and Windows</h2>
+                    <h3></h3>
+                    <p><small>Jesse MacFadyen  aka  @purplecabbage</small></p>
+                </section>
+
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>About Me</h2>
+                      <ul>
+                          <li>I've been working with PhoneGap since late 2008</li>
+                          <li>I've been working on Windows Phone 7&amp;8 for over 2 years</li>
+                          <li>I've been working on Windows 8 for a over a year too</li>
+                          <li>I don't have a favorite color - <i class="fragment">unless you count 'transparent'</i></li>
+                      </ul>
+                </section>
+
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>About this presentation</h2>
+                    <h3>This presentation is:</h3>
+                    <ul>
+                        <li class="fragment">part marketing</li>
+                        <li class="fragment">part knowledge sharing</li>
+                        <li class="fragment">part opinion</li>
+                        <li class="fragment">part comedy <i class="fragment">(hopefully)</i></li>
+                        <li class="fragment">part propaganda</li>
+                        <li class="fragment">part wrong <i class="fragment">( probably )</i></li>
+                    </ul>
+                </section>
+                <!-- ========================================================= -->
+                <section>
+                    <h1>What is PhoneGap?</h1>
+                    <aside class="notes">
+
+                    </aside>
+                    
+                </section>
+                <!-- ========================================================= -->
+                <section>
+                    <h1 >MacOS Only Platforms</h1>
+                    <ul>
+                        <li>iOS</li>
+                    </ul>
+                    
+                    <aside class="notes">All other supported devices have a windows story, including Cordova tooling.</aside>
+                </section>
+                <!-- ========================================================= -->                
+                <section>
+                    <h2>Windows Only Platforms</h2>
+                    <ul>
+                        <li>Windows Phone 7</li>
+                        <li>Windows Phone 8</li>
+                        <li>Windows 8</li>
+                    </ul>
+                    <aside class="notes">Windows Phone 7 will support will be dropped soon.</aside>
+                </section>
+
+                <!-- ========================================================= -->                
+                <section>
+                    <h2>MacOS or Windows</h2>
+                    <ul>
+                        <li>Android</li>
+                        <li>Blackberry</li>
+                        <li>Tizen</li>
+                    </ul>
+                </section>
+                
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h1>Windows Phone 7</h1>
+                    
+                    <p>The first non-WebKit PhoneGap supported device</p>
+                    <p>IE9</p>
+                    <ul>
+                        <li>finally a standards compliant browser</li>
+                        <li>Cordova support developed in partnership with Microsoft</li>
+                        <li>issues with touch+scrolling</li>
+                        <li>no support for SVG, localStorage</li>
+                        <li>isolated storage woes</li>
+                        <li>elegant JS&lt;=&gt;C# communication</li>
+                        <li>unpack app resources to isolatedStorage</li>
+                    </ul>
+                </section>
+ 
+
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>Windows Phone 8</h2>
+                    <p>IE10</p>
+                    <ul>
+                        <li>finally a MORE standards compliant browser</li>
+                        <li>Cordova support developed in partnership with Microsoft</li>
+                        <li>Microsoft introduced MSPointerEvents</li>
+                        <li>SVG, localStorage</li>
+                        <li>elegant JS&lt;=&gt;C# communication</li>
+                        <li>web assets runnable from app package</li>
+                    </ul>
+
+
+                    <p class="fragment">Also ... webWorkers, page visibility, navigation timing, typed arrays, requestAnimationFrame, indexedDB, async script loading event, strict javascript</p>
+                </section>
+                
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Windows 8 and 8.1</h2>
+                    <p>IE10 and IE11</p>
+                    <ul>
+                        <li>Microsoft Embraces the Cordova way</li>
+                        <li>javascript becomes a first class citizen in Windows 8</li>
+                        <li>cordova.js for windows 8 is a <i>simple?</i> translation layer</li>
+                        <li>there are no contacts in Windows 8 ( the People app does that )</li>
+                        <li>very cool binding of JS&lt;=&gt;C# and even JS&lt;=&gt;C++</li>
+                        <li>Other maintainers come and go, I'll take any help I can get.</li>
+                    </ul>
+                </section>
+                
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Windows 8 Cordova pitfalls</h2>
+                    <ul>
+                      <li>cordova-cli cannot launch apps</li>
+                      <li>docs are still in need of attention</li>
+                    </ul>
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Different Workflows</h2>
+                    <ul>
+                        <li>Multi-platform projects</li>
+                        <li>CLI Single-platform projects</li>
+                        <li>Visual Studio Templates</li>
+                    </ul>
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Multi-platform projects</h2>
+                    
+                    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+// create <PATH> [ID [NAME [CONFIG]]]
+$ cordova create c:/MyCordovaProject com.mydomain.myapp HelloCordova
+$ cd c:/MyCordovaProject
+$ cordova platform add wp8
+$ cordova run wp8
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Multi-platform projects folder layout</h2>
+                    
+                    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+    config.xml  // Global config.xml for all your platforms
+    hooks/  
+    merges/
+    platforms/  
+    plugins/  
+    www/    &lt;= This is where you do your cross-device work
+                    </code></pre>
+                </section>                
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2>CLI Single-platform projects</h2>
+                    <ul>
+                        <li>each platform has it's own scripts</li>
+                        <li>used by cordova-cli</li>
+                        <li>you can use them too</li>
+                    </ul>
+                    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+// Usage: create PathToNewProject [ PackageName AppName ]
+// in /bin folder
+$ bin/create c:/MyCordovaProject com.mydomain.myapp HelloCordova
+$ cd c:/MyCordovaProject
+$ cordova\run
+                    </code></pre>
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Visual Studio Templates</h2>
+                    <ul>
+                        <li>Windows Phone 7&amp;8 only</li>
+                        <li>.bat file in the root of the repo to install templates</li>
+                        <li>Simple, I use it 10x a day to test things.</li>
+                        <li>Still need to use cli to install plugins</li>
+                    </ul>
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2>The great plugin breakout</h2>
+                    <p>npm like registry at plugins.cordova.io</p>
+                    <p>new site coming soon!</p>
+                    <div class='fragment'> 
+                    <img src='resources/pluggy.svg' style='width:200px;height:auto;border:none;'/>
+                    <p>stage.plugins.cordova.io</p>
+                </div>
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Installing Plugins - 2 ways</h2>
+                    <ul>
+                        <li>Using cordova cli</li>
+                        <li>Using 'plugman' directly</li>
+                    </ul>
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Using Cordova cli to install a plugin</h2>
+                    <ul>
+                        <li>Must be run from a cordova project root directory</li>
+                        <li>Installs the plugin for all platforms in the project</li>
+                    </ul>
+                    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+
+$ cordova plugin install org.apache.cordova.camera
+
+                    </code></pre>
+                </section>                
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Installing plugins with 'plugman' directly</h2>
+
+                    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+// $ plugman install --platform <platform> --project <directory> --plugin <plugin> [--variable NAME=VALUE]
+// You will usually install plugman globally to do this
+$ npm install -g plugman
+// from the root of a Windows Phone 8 Cordova project
+$ plugman install --platform wp8 --project . --plugin org.apache.cordova.camera
+                    </code></pre>
+                </section>
+
+
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Developer tools</h2>
+                    <h5>The choice is yours</h5>
+                    <ul>
+                        <li>Text Editors : TextMate, Sublime, Brackets, NotePad</li>
+                        <li>IDEs : Eclipse, Visual Studio, XCode </li>
+                    </ul>
+
+
+                    <p>Other more focused IDEs have come out as well.</p>
+
+                    <ul>
+                    <li>Intel's XDK : http://software.intel.com/en-us/html5/tools</li>
+                    <li>Telerik App Builder : http://www.telerik.com/appbuilder</li>
+                    <li>Google Android Studio, Spark, Cloud 9, ...</li>
+                    </ul>
+                    
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2></h2>
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2></h2>
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2></h2>
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2></h2>
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2></h2>
+                </section>
+
+                <!-- ========================================================= -->
+                <section>
+                    <h2></h2>
+                </section>
+
+
+                <!-- ========================================================= -->
+                <section data-background="#FF0000">
+                    <h1>THE END</h1>
+                    <p class="fragment fade-in">... or is it?</p>
+                    <h3 class="fragment">Question Time</h3>
+                </section>
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
