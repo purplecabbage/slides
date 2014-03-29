@@ -301,41 +301,84 @@ $ plugman install --platform wp8 --project . --plugin org.apache.cordova.camera
 
                 <!-- ========================================================= -->
                 <section>
-                    <h2></h2>
+                    <h2>Porting - Must Read</h2>
+                    <ul>
+                        <li>Be warned, you are entering a non-webkit world</li>
+                        <li>TouchEvents -> PointerEvents</li>
+                        <li>Use Hand.js</li>
+                    </ul>
                 </section>
 
                 <!-- ========================================================= -->
                 <section>
-                    <h2></h2>
+                    <h2>Watch the prefixes</h2>
+<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+
+{
+    -webkit-border-radius: 0; 
+    border-radius: 0;
+}
+
+
+
+</code></pre>
+<p>Lot's more tips here : <a href="http://j.mp/P9YGcp" target="_blank">MSOpenTech Blog</a></p>
                 </section>
 
                 <!-- ========================================================= -->
                 <section>
-                    <h2></h2>
+                    <h2>reqestAnimationFrame - safely</h2>
+<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+window.requestAnimFrame = (function(){
+  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();
+</code></pre>
                 </section>
 
                 <!-- ========================================================= -->
                 <section>
-                    <h2></h2>
+                    <h2>Be Responsive</h2>
+                    <ul>
+                        <li>WP8 is 3 or more different screen sizes</li>
+                        <li>Windows 8 is another 3 or more</li>
+                        <li>Don't get me started on Android form factors</li>
+                        <li>ad infinitum, ad nauseam</li>
+                    </ul>
                 </section>
+
+                <section>
+                    <h2>demo</h2>
+                    <p>Ei<sub>8</sub>htBit</p>
+                </section>
+
+
 
                 <!-- ========================================================= -->
                 <section>
-                    <h2></h2>
-                </section>
-
-                <!-- ========================================================= -->
-                <section>
-                    <h2></h2>
-                </section>
-
-
-                <!-- ========================================================= -->
-                <section data-background="#FF0000">
                     <h1>THE END</h1>
                     <p class="fragment fade-in">... or is it?</p>
                     <h3 class="fragment">Question Time</h3>
                 </section>
+
+                <section>
+
+                </section>
+
+                <section>
+                    <h2>Tricks of the trade</h2>
+                    <ul>
+                        <li>my workflow, browser first ( with stubbed api calls )</li>
+                        <li>get the interaction right first, then hook the real data</li>
+                    </ul>
+                </section>
+
+
+
             </div>
 
         </div>
