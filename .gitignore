@@ -6,4 +6,4 @@ node_modules/
 .sass-cache
 
 *.ogv
-*/Thumbs.db
+Thumbs.db
