@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.risingj.phonegap.rapture" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>rapture</name>
+    <js-module name="a" src="www/rapture.js">
+        <clobbers target="rapture" />
+    </js-module>
+    
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Rapture">
+                <param name="ios-package" value="Rapture"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/Rapture.h" />
+        <source-file src="src/ios/Rapture.m" />
+    </platform>
+</plugin>
