@@ -46,14 +46,191 @@
                 <section>
                     <h2>About Me</h2>
                       <ul>
-                          <li>I've been working on Windows 8 for a while too</li>
+                          <li>PhoneGap developer since 2008</li>
+                          <li><i>Can't believe it's been that long.</i></li>
+                          <li>Just moved to San Francisco, from Vancouver</li>
                       </ul>
-                </section>          
+                </section>   
 
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Who has used cordova plugins?</h2>
+                    
+                    <ul>
+                        <li>Everyone, you have to now.</li>
+                        <li>Since 3.0, more than a year ago</li>
+                    </ul>
+                    <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">
+// Install via registry
+cordova plugin add org.apache.cordova.device
+cordova plugin rm org.apache.cordova.device
+
+// OR via local
+cordova plugin add Repos/cordova/cordova-plugin-device
+cordova plugin ls
+cordova plugin rm org.apache.cordova.device
+
+// OR github
+cordova plugin add http://github.com/apache/cordova-plugin-device
+cordova plugin ls
+cordova plugin rm org.apache.cordova.device
+
+
+                    </code></pre>
+                </section>         
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Who has used plugman</h2>
+                    
+                    <ul>
+                        <li>Everyone, you have to now, but you may not even know you are.</li>
+                        <li>Plugman is a node lib that does the dirty work of managing plugins</li>
+                        <li>cordova-cli uses plugman
+                        </li>
+                        
+                        
+                    </ul>
+                    
+                    <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">
+plugman install --plugin org.apache.cordova.device --platform wp8 
+--project .
+                    </code></pre>
+                    
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>The 'core' plugins</h2>
+                    
+                    <ul>
+                        <li>battery-status</li>
+                        <li>camera</li>
+                        <li>console</li>
+                        <li>contacts</li>
+                        <li>device</li>
+                        <li>device-motion</li>
+                        <li>device-orientation</li>
+                        <li>dialogs</li>
+                        <li>file</li>
+                        <li>file-transfer</li>
+                        <li>... some others, more to come ...</li>
+                    </ul>
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Plugin Discovery</h2>
+                    
+                    <ul>
+                        <li>http://plugins.cordova.io/</li>
+                        <li>http://plugreg.com/plugins</li>
+                        <li>https://build.phonegap.com/plugins</li>
+                    </ul>
+                    
+                </section>
                 
 
-            </div>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Plugin Authoring</h2>
+                    
+                    <h3>plugin.xml defines your plugin</h3>
+                    <ul>
+                        <li>a plugin id for registration, add/rm </li>
+                        <li>a version number, author, repo, similar to package.json</li>
+                        <li>a list of platforms and native headers, source files, resources, javascript files</li>
+                        <li>configuration items, permission requirements</li>
+                        <li>js-modules - the js entry point for your plugin</li>
+                    </ul>
+                    
+                    
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Plugman can help!</h2>
+                    
+                    <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">
+Create A Plugin
+---------------
 
+    $ plugman create --name <Plugin Name> --plugin_id <Plugin ID> --plugin_version <Plugin Version> [--path <Directory Path>] [--variable NAME=VALUE]
+
+Parameters:
+
+ - <Plugin Name>: A Name for a Plugin
+ - <Plugin ID>: An ID for the plugin, ex: org.bar.foo
+ - <Plugin Version>: A version for the plugin, ex: 0.0.0
+ - variable NAME=VALUE: Extra variables such as description or Author
+                    
+plugman create --name rapture --plugin_id com.risingj.phonegap.rapture --plugin_version 0.0.1 --path .                    
+                    </code>
+                    
+                    </pre>    
+                    
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    
+                     <h2>A plugin walk-through</h2>
+                     <p><a href="https://github.com/apache/cordova-plugin-device" target="_blank">https://github.com/apache/cordova-plugin-device</a></p>
+                    
+                </section>  
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Demo : rapture</h2>
+                    <p>Save a screenshot of the app to the photo-roll</p>
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+
+                     <h2>Demo: Debugging a plugin</h2>
+                     <p>Involving an IDE, XCode or Visual Studio</p>
+                    
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    
+                     <h2>Docs, Tests, and all that</h2>
+                     <ul>
+                         <li>Of course you should include docs, so users know how to use your plugin. Look at any of the 'core' plugins for best practices.</li>
+                         <li>Tests can be written in Jasmine 2.0, all core plugins have adopted a strategy of having a dependent -test plugin which is installed separately and runs your tests</li>
+                    </ul>
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                     <h2>Questions?</h2>
+                     <p>twitter.com/purplecabbage</p>
+                </section>
+                
+                <section>
+                     <h2>One more thing, or a few ...</h2>
+                     <ul>
+                         <li>Some platforms support plugins that are separate projects</li>
+                         <li>Some plugins reference third party libraries.</li>
+                         <li>Lots to discover with plugin hooks, for when you need to do extra work when the plugin is installed, or the project is being built.</li>
+                     </ul>
+                </section>
+
+            </div>
         </div>
 
         <script src="../reveal/lib/js/head.min.js"></script>
