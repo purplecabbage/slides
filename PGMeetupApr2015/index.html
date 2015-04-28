@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>PhoneGap Microsoft Band Plugin</title>
+
+        <meta name="author" content="Jesse MacFadyen">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="../reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="../reveal/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <!-- ========================================================= -->
+                <section>
+                    <h2></h2>
+                    <h3>PhoneGap Microsoft Band Plugin</h3>
+                    <p><small>Jesse MacFadyen 
+                        <br/>aka @purplecabbage</small></p>
+                </section>
+
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>About Me</h2>
+                      <ul>
+                          <li>PhoneGap developer since 2008</li>
+                          <li><i>Can't believe it's been that long.</i></li>
+                      </ul>
+                      <p><small>Jesse MacFadyen 
+                        <br/>aka @purplecabbage</small></p>
+
+                </section>   
+
+                <!-- ========================================================= -->
+
+                <section>
+                    <h2>What is the Microsoft Band?</h2>
+                    <video src="114ea758-b2b9-4567-bedd-77086c3d80fb.mp4" style="width:800px;height:600px;" loop autoplay>
+                    </video>
+
+                </section>
+
+                <!-- ========================================================= -->
+                    
+                <section>
+                                          <section>
+                        <h2>What can the Microsoft Band do?</h2>
+                            <video src="687c5615-291b-472a-bea4-fd826a81cb51.mp4" style="width:800px;height:600px;" loop autoplay>
+                    </video>
+                    </section>
+                    <section>
+                        <h2>What can the Microsoft Band do?</h2>
+                        <ul>
+                              <li>Sensors</li>
+                              <li>Fitness Tracking</li>
+                              <li>Notifications</li>
+                              <li>Haptics</li>
+                              <li>Sleep Tracking</li>
+                              <li>Can be personalized</li>
+                          </ul>
+                      </section>
+
+                </section>
+
+                <section>
+                    <h2>Sensory Overload</h2>
+                    <ul style="float:left;clear:none;">
+                        <li>HeartRate</li>
+                        <li>BandContact</li>
+                        <li>Skin Temperature</li>
+                        <li>UV Level</li>
+                        <li>Accelerometer</li>
+                        <li>Gyroscope</li>
+                        <li>GPS</li>
+                        <li>Pedometer</li>
+                        <li>Distance</li>
+                    </ul>
+                    <video src="c1701228-a3ee-47d9-91df-f505f7b69180.mp4" style="float:right; width:500px;height:440px;clear:none;" loop autoplay>
+                    </video>
+                </section>
+
+
+                <section>
+                    <h2>What devices does it work with?</h2>
+                    <img src="f57ff49d-f3d3-48c2-a48f-525bef1ea5db.jpg"></img>
+                </section>
+
+                <section>
+                    <h2>And now it works with PhoneGap too!</h2>
+                    <ul>    
+                        <li>Currently just iOS, but others soon.</li>
+                        <li>Apache 2.0 Licensed and on github</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>What can the plugin do?</h2>
+                    <ul>
+                        <li>Get band info</li>
+                        <li>Read and watch sensors</li>
+                        <li>Create tiles and send notifications</li>
+                        <li>Get and set theme colors</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>How to install</h2>
+                    <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">
+
+// not on npm yet
+cordova plugin add https://github.com/purplecabbage/phonegap-plugin-msband.git
+
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Connecting to the band</h2>
+                    <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">
+
+function onDeviceReady() {
+    msband.connect(onBandConnectSuccess,onBandConnectError);
+}
+
+function onBandConnectSuccess(evt) {
+    isBandConnected = true;
+    bandIcon.src="img/iconWhite64-2x.png";
+}
+
+function onBandConnectError(err) {
+    isBandConnected = false;
+    bandIcon.src="img/iconBlack64-2x.png";
+}
+
+                    </pre></code>
+                </section>
+
+                <section>
+                    <h2>Subscribing to a sensor</h2>
+                    <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">                
+msband.sensors.on("heartbeat",onHeartBeatUpdate);
+
+function onHeartBeatUpdate(evt) {
+    // evt has quality,heartRate + timestamp
+}
+
+// to unsubscribe 
+function unSubHeartRate() {
+    msband.sensors.un("heartbeat",onHeartBeatUpdate);
+}
+                
+                    </pre></code>
+                </section>
+
+                <section>
+                    <h2>How about a demo?</h2>           
+                </section>   
+
+                <section>
+                    <h2>Challenges</h2>
+                    <ul>
+                        <li>Using Accelerometer + Gyro data</li>
+                        <li>Color space issues</li>
+                    </ul>
+                </section>  
+
+
+                <section>
+                    <h2>What's left to do?</h2>
+                    <ul>
+                        <li>Android, and Windows Universal</li>
+                        <li>Documentation</li>
+                        <li>Tests would be nice</li>
+                        <li>Input validation</li>
+                    </ul>
+                </section> 
+
+            
+
+
+                
+                <section>
+                     <h2>Questions?</h2>
+                     <br><br><br>
+                     <h2>Links</h2>
+                     <ul>
+                        <li><a href="http://twitter.com/purplecabbage">twitter/@purplecabbage</a></li>
+                        <li><a href="http://github.com/purplecabbage">github/@purplecabbage</a></li>
+                        <li><a href="http://github.com/purplecabbage/phonegap-plugin-msband">The plugin repo</a></li>
+
+                        <li><a href="http://www.microsoftband.com/">Microsoft Band user site</a></li>
+                        <li><a href="http://developer.microsoftband.com/">Microsoft Band developer site</a></li>
+                    </ul>
+
+                    <br><br><br><br><br>
+                    <p>Photo Credits : www.microsoftband.com</p>
+
+
+                </section>
+                
+
+            </div>
+        </div>
+
+        <script src="../reveal/lib/js/head.min.js"></script>
+        <script src="../reveal/js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: '../reveal/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
