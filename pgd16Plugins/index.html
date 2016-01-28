@@ -39,6 +39,7 @@
                     <h2>Plugins - In Depth Workshop</h2>
                     <h3>PhoneGap Day USA 2016</h3>
                     <p><small>Jesse MacFadyen </small></p>
+                    <p>http://purplecabbage.github.io/slides/pgd16Plugins/index.html</p>
                 </section>
 
                 <!-- ========================================================= -->
@@ -55,7 +56,6 @@
 
                 <!-- ======================================= -->
                 
-                <section>
                     <section>
                         <h2>Who has used cordova plugins?</h2>
                         <ul>
@@ -103,9 +103,7 @@ cordova plugin rm cordova-plugin-device
                         
 <p>This is the recommended way for developing. With `--link`                        
                     </section>
-                                        
-                </section>   
-                
+
 
                 
                 <!-- ======================================= -->
@@ -211,9 +209,8 @@ Also accepts a --variable name=value pair string to define additional data like 
 
 ```
     //In plugin.xml
-    <dependency id="cordova-plugin-device"/>
-    <dependency id="cordova-plugin-console"/>
-    
+    <dependency id="cordova-plugin-device"></dependency>
+    <dependency id="cordova-plugin-console"></dependency>
 ```
     
                 </section>
@@ -370,7 +367,17 @@ _provides advanced levels of care at the point of illness or injury, including o
   
                 </section>     
                 
-                <!-- ======================================= -->                
+                <!-- ======================================= -->
+                
+                <section data-markdown>  
+
+## How to write tests
+
+- copy a core plugin, really, it's what I do
+- create a test/ folder in your plugin repo
+- add a plugin.xml file
+
+                </section>
 
                 <section data-markdown>      
 ## Debugging Native Code in XCode
@@ -381,7 +388,19 @@ _provides advanced levels of care at the point of illness or injury, including o
 
                 <section data-markdown>      
 ## Debugging Windows JS code in Visual Studio
+
+( note to self: start your vm! )
                 </section>   
+                
+                <section data-markdown>      
+## The Windows Bridge
+
+- there isn't one
+- js is a first class citizen
+- windows exec uses a proxy
+
+<a href="http://github.com/apache/cordova-plugin-device" target="_blank">cordova-plugin-device</a>
+                </section>                   
                 
                 <!-- ======================================= -->                
 
@@ -409,6 +428,16 @@ _provides advanced levels of care at the point of illness or injury, including o
                 
                 <!-- ======================================= -->
                 
+                <section data-markdown> 
+## Homework
+- Extend a plugin, remix it, remux it ex. The globalization plugin is async, which is really irritating.  
+	https://github.com/apache/cordova-plugin-globalization
+-- All formatting/globalization info could be fetched up front, and then processing could happen NSYNC
+
+                </section>
+                
+                <!-- ======================================= -->
+                
                 <section>
                      <h2>Questions?</h2>
                      <p>twitter.com/purplecabbage</p>
@@ -425,9 +454,6 @@ _provides advanced levels of care at the point of illness or injury, including o
 
             </div>
         </div>
-        
-        
-        
         
  <script src="../reveal/lib/js/head.min.js"></script>
         <script src="../reveal/js/reveal.min.js"></script>
