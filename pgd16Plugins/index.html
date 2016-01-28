@@ -81,16 +81,6 @@ cordova plugin ls
 cordova plugin rm cordova-plugin-device
                         </code></pre>
                     </section>
-                    
-                    <section>
-                        <h2>Install via local plugin</h2>
-                        <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">
-cordova plugin add Repos/cordova/cordova-plugin-device
-cordova plugin ls
-    > cordova-plugin-device 1.1.1 "Device"
-cordova plugin rm cordova-plugin-device
-                        </code></pre>
-                    </section>
 
                     <section>
                         <h2>Install via repo url - github</h2>
@@ -101,8 +91,22 @@ cordova plugin ls
 cordova plugin rm cordova-plugin-device
                         </code></pre>
                     </section>
+                    
+                    <section>
+                        <h2>Install via local plugin</h2>
+                        <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">
+cordova plugin add Repos/cordova/cordova-plugin-device
+cordova plugin ls
+    > cordova-plugin-device 1.1.1 "Device"
+cordova plugin rm cordova-plugin-device
+                        </code></pre>
+                        
+<p>This is the recommended way for developing. With `--link`                        
+                    </section>
+                                        
                 </section>   
                 
+
                 
                 <!-- ======================================= -->
                 
@@ -169,13 +173,12 @@ cordova plugin rm cordova-plugin-device
                 <!-- ======================================= -->
                 
                 <section>
-                    <h2>Who has used plugman</h2>
+                    <h2>Who has used plugman?</h2>
                     
                     <ul>
-                        <li>Everyone, you have to now, but you may not even know you are.</li>
+                        <li>Everyone, but you may not even know you are.</li>
                         <li>Plugman is a node lib that does the dirty work of managing plugins</li>
-                        <li>cordova-cli uses plugman
-                        </li>
+                        <li>cordova-cli uses plugman under the hood</li>
                     </ul>
                     
                     <pre><code contenteditable>
@@ -197,10 +200,57 @@ plugman install --plugin org.apache.cordova.device --platform wp8
 Also accepts a --variable name=value pair string to define additional data like author, etc.
 
                 </section>
+
                 
                 <!-- ======================================= -->
-                <section>
-                    <h2>Adding plugin functionality</h2>
+                <section data-markdown>   
+
+## Dependencies
+
+- plugins can require other plugins too
+
+```
+    //In plugin.xml
+    <dependency id="cordova-plugin-device"/>
+    <dependency id="cordova-plugin-console"/>
+    
+```
+    
+                </section>
+                
+                <!-- ======================================= -->
+                <section data-markdown>
+## Adding plugin functionality
+          
+    exec(null, null, "StatusBar", "styleDefault", []); // JS
+    // in the app's (ios) config.xml                
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    // in CDVStatusBar.m
+    - (void) styleDefault:(CDVInvokedUrlCommand*)command
+    {
+        [self setStyleForStatusBar:UIStatusBarStyleDefault];
+    }
+    
+                </section>
+                
+                <!-- ======================================= -->
+                <section data-markdown>   
+## Sending Data Back to JS
+
+```
+    // in CDVStatusBar.m
+    (void)fireTappedEvent 
+    {
+        if (_eventsCallbackId == nil) { return; }
+        NSDictionary* payload = @{@"type": @"tap"};
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK  messageAsDictionary:payload];
+        [result setKeepCallbackAsBool:YES];
+        [self.commandDelegate sendPluginResult:result callbackId:_eventsCallbackId];
+    }
+```
                 </section>
                 
                 <!-- ======================================= -->
@@ -233,7 +283,7 @@ Also accepts a --variable name=value pair string to define additional data like 
 ## What can plugins do?
 
 - plugable, adds some functionality
-- could be adding the functionality at runtime
+- could be adding the functionality at runtime, build time, or install time
 
                 </section>
 
@@ -271,6 +321,8 @@ Also accepts a --variable name=value pair string to define additional data like 
                 
                 <section data-markdown>
 ### A more complex plugin demo
+
+<a href="http://github.com/purplecabbage/phonegap-plugin-sidebar" target="_blank">phonegap-plugin-sidebar</a>
                 </section>
 
                 <!-- ======================================= -->
@@ -304,15 +356,55 @@ _provides advanced levels of care at the point of illness or injury, including o
     
                 </section>
                 
+                <section data-markdown>
+  ## automates jasmine test running
+  
+  - creates a new project (in temp)
+  - adds the platform specified (ios|android|windows)
+  - installs the cordova-plugin-test-framework plugin
+  - installs the plugin specified
+  - installs the plugin's tests ( a plugin ... from the test/ folder )
+  - sets the start page to cordova-plugin-test-framework plugins test runner page
+  - creates a local server to listen for results posted back from the test runner
+  - exits with success/fail based on results        
+  
+                </section>     
+                
+                <!-- ======================================= -->                
+
+                <section data-markdown>      
+## Debugging Native Code in XCode
+
+                </section>    
+                
+                <!-- ======================================= -->                
+
+                <section data-markdown>      
+## Debugging Windows JS code in Visual Studio
+                </section>   
+                
+                <!-- ======================================= -->                
+
+                <section data-markdown>      
+                    
+## Publishing your plugin
+
+- `npm publish`
+- profit!
+
+                </section>                                
+                
                 <!-- ======================================= -->
                 
-                <section>
+                <section data-markdown> 
                     
-                     <h2>Docs</h2>
-                     <ul>
-                         <li>Of course you should include docs, so users know how to use your plugin. Look at any of the 'core' plugins for best practices.</li>
-                         
-                    </ul>
+## Docs
+
+- Of course you should include docs, so users know how to use your plugin
+- Look at any of the 'core' plugins for best practices.
+- English in the root README.md
+- translations in the docs/ folder
+
                 </section>
                 
                 <!-- ======================================= -->
