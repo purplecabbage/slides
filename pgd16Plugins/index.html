@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>PhoneGap Plugins - workshop deep dive</title>
+
+        <meta name="description" content="PhoneGap plugins">
+        <meta name="author" content="Jesse MacFadyen">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="../reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="../reveal/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Plugins - In Depth Workshop</h2>
+                    <h3>PhoneGap Day USA 2016</h3>
+                    <p><small>Jesse MacFadyen </small></p>
+                </section>
+
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>About Me</h2>
+                      <ul>
+                        <li>PhoneGap Developer since 2008</li>
+                        <li>Apache Cordova committer</li>
+                        <li>at Adobe for 4 years now</li>
+                        <li>@purplecabbage</li>
+                      </ul>
+                </section>   
+
+                <!-- ======================================= -->
+                
+                <section>
+                    <section>
+                        <h2>Who has used cordova plugins?</h2>
+                        <ul>
+                            <li>Everyone, you have to now.</li>
+                            <li>Since 3.0, ages ago!</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h2>Who understands how they work?</h2>
+                        <ul>
+                            <li>Much less of us</li>
+                            <li>Let's fix that!</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h2>Install via npm</h2>
+                        <pre><code>
+cordova plugin add cordova-plugin-device
+cordova plugin ls
+    > cordova-plugin-device 1.1.1 "Device"
+cordova plugin rm cordova-plugin-device
+                        </code></pre>
+                    </section>
+                    
+                    <section>
+                        <h2>Install via local plugin</h2>
+                        <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">
+cordova plugin add Repos/cordova/cordova-plugin-device
+cordova plugin ls
+    > cordova-plugin-device 1.1.1 "Device"
+cordova plugin rm cordova-plugin-device
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Install via repo url - github</h2>
+                        <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">
+cordova plugin add http://github.com/apache/cordova-plugin-device
+cordova plugin ls
+    > cordova-plugin-device 1.1.1 "Device"
+cordova plugin rm cordova-plugin-device
+                        </code></pre>
+                    </section>
+                </section>   
+                
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Plugin Discovery</h2>
+                    
+                    <ul>
+                        <li>https://cordova.apache.org/plugins/</li>
+                        <li>https://www.npmjs.com/search?q=ecosystem:cordova</li>
+                    </ul>
+                    
+                </section>                    
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>The 'core' plugins</h2>
+                    
+                    <ul>
+                        <li>battery-status</li>
+                        <li>camera</li>
+                        <li>console</li>
+                        <li>contacts</li>
+                        <li>device</li>
+                        <li>device-motion</li>
+                        <li>device-orientation</li>
+                        <li>dialogs</li>
+                     </ul>
+                     <ul>
+                        <li>file</li>
+                        <li>file-transfer</li>
+                        <li>splash-screen</li>
+                        <li>status-bar</li>
+                        <li>inappbrowser</li>
+                        <li>network-information</li>
+                        <li>whitelist</li>
+                        <li>... probably a couple more</li>
+                    </ul>
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Plugin Authoring</h2>
+                    
+                    <h3>plugin.xml defines your plugin</h3>
+                    <ul>
+                        <li>a plugin id for registration discovery, add/rm </li>
+                        <li>a version number, author, repo, similar to package.json</li>
+                        <li>a list of platforms and native headers, source files, resources, javascript files</li>
+                        <li>configuration items, permission requirements</li>
+                        <li>js-modules - the js entry point for your plugin</li>
+                    </ul>
+                </section>
+                                
+                <!-- ======================================= -->
+                
+                
+                <section>
+                    <h2>A quick plugin walkthrough</h2>
+                    <a href="http://github.com/apache/cordova-plugin-device" target="_blank">cordova-plugin-device</a>
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Who has used plugman</h2>
+                    
+                    <ul>
+                        <li>Everyone, you have to now, but you may not even know you are.</li>
+                        <li>Plugman is a node lib that does the dirty work of managing plugins</li>
+                        <li>cordova-cli uses plugman
+                        </li>
+                    </ul>
+                    
+                    <pre><code contenteditable>
+plugman install --plugin org.apache.cordova.device --platform wp8 
+--project .
+                    </code></pre>
+                    
+                </section>
+
+                <!-- ======================================= -->
+                
+                <section data-markdown>
+## Plugman can also help you create your plugin
+                    
+    // try me!
+    plugman create --name PluginName --plugin_id jesse-plugin-id --plugin_version 0.0.1 --path . 
+    
+
+Also accepts a --variable name=value pair string to define additional data like author, etc.
+
+                </section>
+                
+                <!-- ======================================= -->
+                <section>
+                    <h2>Adding plugin functionality</h2>
+                </section>
+                
+                <!-- ======================================= -->
+                <section>
+                    <h2>A walk through the iOS bridge</h2>
+                </section>
+
+                <!-- ======================================= -->
+                <section data-markdown>
+## Publishing your plugin
+
+- npm is now the home of all core cordova plugins
+- You'll need a package.json if you want to publish ...
+                </section>
+                
+                <!-- ======================================= -->
+                <section data-markdown>
+## Plugman can do that too!
+    
+    plugman createpackagejson path/to/my/plugin/
+    
+    // show me!
+    
+    npm publish
+    
+                </section>
+
+                <!-- ======================================= -->
+                <section data-markdown>
+## What can plugins do?
+
+- plugable, adds some functionality
+- could be adding the functionality at runtime
+
+                </section>
+
+                <!-- ======================================= -->
+                <section data-markdown>
+### Plugins at runtime
+
+- providing a UI framework, or helper mvc frameworks
+- exposing native functions
+- provide hooks for QA, debug-logging
+- analytics
+
+                </section>
+                
+                <!-- ======================================= -->
+                <section data-markdown>
+### Plugins at build time
+
+- transpile ES6 to js-now, typescript, coffee-script 
+  - _is coffee-script still a thing?_
+- SASS/less pre-processing
+- image inlining / webpack
+- could be doing analysis
+  - code coverage, linting, quality checks
+
+                </section>
+
+                <section data-markdown>
+### Plugins at install time
+
+- could also bundle other plugins, a mashup
+- could provide tests for another plugin
+
+                </section>
+                
+                <section data-markdown>
+### A more complex plugin demo
+                </section>
+
+                <!-- ======================================= -->
+                
+<section data-markdown>
+<h2>Plugin testing</h2>
+<p><strong>cordova-medic</strong> is a test tool which is designed to run ALL the plugin tests</p>
+
+- tests are written in Jasmine 2.0
+- plugins have a dependent test/ plugin which is installed separately
+
+<a href="http://github.com/apache/cordova-plugin-device" target="_blank">cordova-plugin-device</a>
+</section>
+
+                <!-- ======================================= -->
+                
+                <section data-markdown>
+Many of the pieces of cordova-medic are reusable, so I spun them into another purpose based tool
+                    
+
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section data-markdown>
+## cordova-paramedic
+
+_provides advanced levels of care at the point of illness or injury, including out of hospital treatment, and diagnostic services_
+
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    
+                     <h2>Docs</h2>
+                     <ul>
+                         <li>Of course you should include docs, so users know how to use your plugin. Look at any of the 'core' plugins for best practices.</li>
+                         
+                    </ul>
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                     <h2>Questions?</h2>
+                     <p>twitter.com/purplecabbage</p>
+                </section>
+                
+                <section>
+                     <h2>One more thing, or a few ...</h2>
+                     <ul>
+                         <li>Some platforms support plugins that are separate projects</li>
+                         <li>Some plugins reference third party libraries.</li>
+                         <li>Lots to discover with plugin hooks, for when you need to do extra work when the plugin is installed, or the project is being built.</li>
+                     </ul>
+                </section>
+
+            </div>
+        </div>
+        
+        
+        
+        
+ <script src="../reveal/lib/js/head.min.js"></script>
+        <script src="../reveal/js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: '../reveal/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+    </body>
+</html>
