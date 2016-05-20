@@ -37,8 +37,8 @@
                 <!-- ========================================================= -->
                 <section>
                     <h2>Plugins - In Depth Workshop</h2>
-                    <h3>PhoneGap Day USA 2016</h3>
-                    <p><small>Jesse MacFadyen </small></p>
+                    <h3>PhoneGap Day EU 2016</h3>
+                    <p><small>Jesse MacFadyen</small></p>
                     <p>http://purplecabbage.github.io/slides/pgd16Plugins/index.html</p>
                 </section>
 
@@ -49,7 +49,7 @@
                       <ul>
                         <li>PhoneGap Developer since 2008</li>
                         <li>Apache Cordova committer</li>
-                        <li>at Adobe for 4 years now</li>
+                        <li>at Adobe for nearly 5 years now</li>
                         <li>@purplecabbage</li>
                       </ul>
                 </section>   
@@ -101,7 +101,7 @@ cordova plugin ls
 cordova plugin rm cordova-plugin-device
                         </code></pre>
                         
-<p>This is the recommended way for developing. With `--link`                        
+<p>This is the recommended way for developing. With `--link`</p>                        
                     </section>
 
 
@@ -122,7 +122,6 @@ cordova plugin rm cordova-plugin-device
                 
                 <section>
                     <h2>The 'core' plugins</h2>
-                    
                     <ul>
                         <li>battery-status</li>
                         <li>camera</li>
@@ -132,17 +131,42 @@ cordova plugin rm cordova-plugin-device
                         <li>device-motion</li>
                         <li>device-orientation</li>
                         <li>dialogs</li>
-                     </ul>
-                     <ul>
                         <li>file</li>
                         <li>file-transfer</li>
+                        <li>geolocation</li>                        
+                     </ul>
+                     <ul>
+                        <li>globalization</li>
+                        <li>inappbrowser</li>
+                        <li>media</li>
+                        <li>media-capture</li>
+                        <li>network-information</li>
                         <li>splash-screen</li>
                         <li>status-bar</li>
-                        <li>inappbrowser</li>
-                        <li>network-information</li>
+                        <li>vibration</li>
                         <li>whitelist</li>
-                        <li>... probably a couple more</li>
+                        <li>... Am I missing any?</li>
                     </ul>
+                </section>
+
+                <section>
+                    <h2>Community Plugins</h2>
+                    
+                    <p>1272 plugins total according to the search</p>
+
+                    <a href="http://cordova.apache.org/plugins/" target="_blank">http://cordova.apache.org/plugins/</a>
+
+                </section>
+
+                <section>
+                    <h2>Other plugin lists</h2>
+
+                    <p>1599 Plugins according to PlugReg</p>
+                    <a href="http://www.plugreg.com/" target="_blank">http://www.plugreg.com/</a>
+
+                    <p>70 Verified plugins listed by Telerik</p>
+                    <a href="http://plugins.telerik.com/cordova" target="_blank">http://plugins.telerik.com/cordova</a>
+
                 </section>
                 
                 <!-- ======================================= -->
@@ -157,6 +181,7 @@ cordova plugin rm cordova-plugin-device
                         <li>a list of platforms and native headers, source files, resources, javascript files</li>
                         <li>configuration items, permission requirements</li>
                         <li>js-modules - the js entry point for your plugin</li>
+                        <li>hooks</li>
                     </ul>
                 </section>
                                 
@@ -180,6 +205,7 @@ cordova plugin rm cordova-plugin-device
                     </ul>
                     
                     <pre><code contenteditable>
+// npm install -g plugman                        
 plugman install --plugin org.apache.cordova.device --platform wp8 
 --project .
                     </code></pre>
@@ -320,7 +346,20 @@ Also accepts a --variable name=value pair string to define additional data like 
 ### A more complex plugin demo
 
 <a href="http://github.com/purplecabbage/phonegap-plugin-sidebar" target="_blank">phonegap-plugin-sidebar</a>
+
+This plugin includes a demo!
+
+- Demo issue with statusbar and sidebar
+
                 </section>
+
+                <section data-markdown>
+### Note how that demo was installed!
+
+the `--link` in the demo instructions was important
+
+
+                </section>                
 
                 <!-- ======================================= -->
                 
@@ -329,7 +368,9 @@ Also accepts a --variable name=value pair string to define additional data like 
 <p><strong>cordova-medic</strong> is a test tool which is designed to run ALL the plugin tests</p>
 
 - tests are written in Jasmine 2.0
+- tests run asyncronously
 - plugins have a dependent test/ plugin which is installed separately
+  - by convention
 
 <a href="http://github.com/apache/cordova-plugin-device" target="_blank">cordova-plugin-device</a>
 </section>
@@ -365,7 +406,19 @@ _provides advanced levels of care at the point of illness or injury, including o
   - creates a local server to listen for results posted back from the test runner
   - exits with success/fail based on results        
   
-                </section>     
+                </section>  
+
+                <section data-markdown>                   
+## Some caveats
+
+  - only supports npm published platforms
+
+
+```
+    // this will not work currently!
+    cordova-paramedic --platform /Repos/cordova/cordova-ios --plugin .
+```
+                </section>    
                 
                 <!-- ======================================= -->
                 
@@ -409,7 +462,7 @@ _provides advanced levels of care at the point of illness or injury, including o
 ## Publishing your plugin
 
 - `npm publish`
-- profit!
+- shine! profit! 
 
                 </section>                                
                 
@@ -423,6 +476,10 @@ _provides advanced levels of care at the point of illness or injury, including o
 - Look at any of the 'core' plugins for best practices.
 - English in the root README.md
 - translations in the docs/ folder
+
+                </section>
+
+                <section data-markdown>
 
                 </section>
                 
@@ -448,7 +505,8 @@ _provides advanced levels of care at the point of illness or injury, including o
                      <ul>
                          <li>Some platforms support plugins that are separate projects</li>
                          <li>Some plugins reference third party libraries.</li>
-                         <li>Lots to discover with plugin hooks, for when you need to do extra work when the plugin is installed, or the project is being built.</li>
+                         <li>Cocoapod support is coming to iOS</li>
+                         <li>gradle support exists in Android, soon plugins can actually be AARs</li>
                      </ul>
                 </section>
 
