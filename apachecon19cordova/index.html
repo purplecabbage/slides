@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Apache Cordova</title>
+
+        <meta name="description" content="Apache Cordova">
+        <meta name="author" content="Jesse MacFadyen">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal/css/theme/moon.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="../reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="../reveal/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Apache Cordova</h2>
+                    <h3>ApacheCon 2019 North America</h3>
+                    <p><small>Jesse MacFadyen</small></p>
+                    <p>purplecabbage.github.io/slides/apachecon19cordova</p>
+                </section>
+
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>About Me</h2>
+                      <ul>
+                        <li>PhoneGap Developer since 2008</li>
+                        <li>Apache Cordova committer/member/pmc-chair</li>
+                        <li>at Adobe for 10 years now</li>
+                        <li>@purplecabbage</li>
+                      </ul>
+                </section>
+
+<section data-markdown>
+## Cordova Cordova Cordova
+
+The story of Cordova
+</section>
+
+<section data-markdown>
+## UI Frameworks
+
+- one thing we agreed on early was to stay away from the volatile world of UI frameworks.
+    - competition is fierce, look at Sencha Touch, WinJS or jQuery-Mobile
+- we chose to focus on enabling whichever UI framework you chose, cordova is the container and the bridge
+    - framework7, react, ionic, onsen ui, angular, vue, svelte       
+</section>
+
+<section data-markdown>
+## Competitors 
+
+- not really competitors to cordova, but these folks may or may think of cordova as a competitor
+
+- native, react-native, ionic (avacado/ capacitor), 
+
+> All four technologies allow you to build real native mobile apps for both iOS and Android - without the need to learn Swift, ObjectiveC, Java or Kotlin!         
+</section>
+
+<section data-markdown>
+## Modern JS
+
+- async/await
+- promisify all exec calls?
+- `cordova.exec(cbSuccessFunction, cbErrorFunction, 'namespace','method',[args])`
+- get rid of all the callbacks?     
+</section>
+
+<section data-markdown>
+
+## PWA
+
+        
+</section>
+
+<section data-markdown>
+## WebComponents
+
+</section>
+
+<section data-markdown>
+
+## Electron
+
+- now a full fledged cordova app target, 
+- there is a lot you can do, not a lot of plugins
+
+</section>
+
+<section data-markdown>
+## Serverless
+
+- openwhisk + cordova ? Apache + Apache
+
+- firebase ( Google ) 
+  - https://firebase.google.com/docs/auth/web/cordova
+
+- amplify ( AWS )
+
+- azure mobile services ( Microsoft )
+  - https://docs.microsoft.com/en-us/azure/app-service-mobile/app-service-mobile-cordova-get-started
+
+</section>
+
+<section data-markdown>
+## The next wave of innovators, contributors, 
+
+</section>
+
+<section data-markdown>
+
+While in the past we had large scale teams coming from Google, IBM, Intel, Microsoft, Blackberry, Adobe, there is currently no major contributor, and the project is managed by a small team of very dedicated volunteers.
+
+Over the last few years there has been a decline in the number of active contributors.
+- Probably because the project has become mature and there is less change needed.  
+- Perhaps because we are not the new shiny project we once were, there is less excitement around having your name tied to the project, it is good enough to say that your company 'did' commit.
+- App stores have lost their shine, a good mobile experience in a web browser is enough for most businesses.
+- Maybe, the rise of other web-based workflows like (pwa) have shown enough promise that there is less interest in building apps for the stores.
+
+</section>
+
+</div></div>
+        
+ <script src="../reveal/lib/js/head.min.js"></script>
+        <script src="../reveal/js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: '../reveal/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+    </body>
+</html>
