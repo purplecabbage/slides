@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Apache Cordova Plugins - deep dive</title>
+
+        <meta name="description" content="Apache Cordova plugins">
+        <meta name="author" content="Jesse MacFadyen">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal/css/theme/moon.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="../reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="../reveal/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <!-- ========================================================= -->
+                <section>
+                    <h2>Plugins - In Depth</h2>
+                    <h3>ApacheCon 2019 North America</h3>
+                    <p><small>Jesse MacFadyen</small></p>
+                    <p>http://purplecabbage.github.io/slides/apachecon19plugins/index.html</p>
+                </section>
+
+                <!-- ========================================================= -->
+                
+                <section>
+                    <h2>About Me</h2>
+                      <ul>
+                        <li>PhoneGap Developer since 2008</li>
+                        <li>Apache Cordova committer/member/pmc-chair</li>
+                        <li>at Adobe for 10 years now</li>
+                        <li>@purplecabbage</li>
+                      </ul>
+                </section>   
+
+                <!-- ======================================= -->
+                
+                    <section>
+                        <h2>Who has used cordova plugins?</h2>
+                        <ul>
+                            <li>Everyone, you have to now.</li>
+                            <li>Since 3.0, ages ago!</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h2>Who understands how they work?</h2>
+                        <ul>
+                            <li>Much less of us</li>
+                            <li>Let's fix that!</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h2>Install via npm</h2>
+                        <pre><code>
+cordova plugin add cordova-plugin-device
+cordova plugin ls
+    > cordova-plugin-device 1.1.1 "Device"
+cordova plugin rm cordova-plugin-device
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Install via repo url - github</h2>
+                        <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">
+cordova plugin add http://github.com/apache/cordova-plugin-device
+cordova plugin ls
+    > cordova-plugin-device 1.1.1 "Device"
+cordova plugin rm cordova-plugin-device
+                        </code></pre>
+                    </section>
+                    
+                    <section>
+                        <h2>Install via local plugin</h2>
+                        <pre><code contenteditable style="font-size: 20px; margin-top: 20px;">
+cordova plugin add Repos/cordova/cordova-plugin-device
+cordova plugin ls
+    > cordova-plugin-device 1.1.1 "Device"
+cordova plugin rm cordova-plugin-device
+                        </code></pre>
+                        
+<p>This is the recommended way for developing. With `--link`</p>                        
+                    </section>
+
+
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Plugin Discovery</h2>
+                    
+                    <ul>
+                        <li>https://cordova.apache.org/plugins/</li>
+                        <li>https://www.npmjs.com/search?q=ecosystem:cordova</li>
+                    </ul>
+                    
+                </section>                    
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>The 'core' plugins</h2>
+                    <ul>
+                        <li>battery-status</li>
+                        <li>camera</li>
+                        <li>device</li>
+                        <li>device-motion</li>
+                        <li>device-orientation</li>
+                        <li>dialogs</li>
+                        <li>file</li>
+                        <li>file-transfer</li>
+                        <li>geolocation</li>                        
+                     </ul>
+                     <ul>
+                        <li>globalization</li>
+                        <li>inappbrowser</li>
+                        <li>media</li>
+                        <li>media-capture</li>
+                        <li>network-information</li>
+                        <li>screen-orientation</li>
+                        <li>splash-screen</li>
+                        <li>status-bar</li>
+                        <li>vibration</li>
+                        <li>whitelist</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Community Plugins</h2>
+                    
+                    <p>4573 plugins total according to the search</p>
+
+                    <a href="http://cordova.apache.org/plugins/" target="_blank">http://cordova.apache.org/plugins/</a>
+
+                </section>
+
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Plugin Authoring</h2>
+                    
+                    <h3>plugin.xml defines your plugin</h3>
+                    <ul>
+                        <li>a plugin id for registration discovery, add/rm </li>
+                        <li>a version number, author, repo, similar to package.json</li>
+                        <li>a list of platforms and native headers, source files, resources, javascript files</li>
+                        <li>configuration items, permission requirements</li>
+                        <li>js-modules - the js entry point for your plugin</li>
+                        <li>hooks</li>
+                    </ul>
+                </section>
+                                
+                <!-- ======================================= -->
+                
+                
+                <section>
+                    <h2>A quick plugin walkthrough</h2>
+                    <a href="http://github.com/apache/cordova-plugin-device" target="_blank">cordova-plugin-device</a>
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                    <h2>Who has used plugman?</h2>
+                    
+                    <ul>
+                        <li>Everyone, but you may not even know you are.</li>
+                        <li>Plugman is a node lib that does the dirty work of managing plugins</li>
+                        <li>cordova-cli uses plugman under the hood</li>
+                    </ul>
+                    
+                    <pre><code contenteditable>
+// npm install -g plugman                        
+plugman install --plugin org.apache.cordova.device --platform windows 
+--project .
+                    </code></pre>
+                    
+                </section>
+
+                <!-- ======================================= -->
+                
+                <section data-markdown>
+## Plugman can also help you create your plugin
+                    
+    // try me!
+    plugman create --name PluginName --plugin_id jesse-plugin-id --plugin_version 0.0.1
+    
+
+Also accepts a --variable name=value pair string to define additional data like author, etc.
+
+                </section>
+
+                
+                <!-- ======================================= -->
+                <section data-markdown>   
+
+## Dependencies
+
+- plugins can require other plugins too
+
+```
+    //In plugin.xml
+    <dependency id="cordova-plugin-device"></dependency>
+    <dependency id="cordova-plugin-console"></dependency>
+```
+    
+                </section>
+                
+                <!-- ======================================= -->
+                <section>
+    <h2>Adding plugin functionality</h2>
+    
+    <pre><code class='hljs javascript has-highlights'>
+
+    exec(null, null, "StatusBar", "styleDefault", []); // JS
+    // in the app's (ios) config.xml                
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    // in CDVStatusBar.m
+    - (void) styleDefault:(CDVInvokedUrlCommand*)command
+    {
+        [self setStyleForStatusBar:UIStatusBarStyleDefault];
+    }
+</code></pre>
+    
+                </section>
+                
+                <!-- ======================================= -->
+                <section data-markdown>   
+## Sending Data Back to JS
+
+```
+    // in CDVStatusBar.m
+    (void)fireTappedEvent 
+    {
+        if (_eventsCallbackId == nil) { return; }
+        NSDictionary* payload = @{@"type": @"tap"};
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK  messageAsDictionary:payload];
+        [result setKeepCallbackAsBool:YES];
+        [self.commandDelegate sendPluginResult:result callbackId:_eventsCallbackId];
+    }
+```
+                </section>
+                
+                <!-- ======================================= -->
+                <section>
+                    <h2>A walk through the iOS bridge</h2>
+                </section>
+
+                <!-- ======================================= -->
+                <section data-markdown>
+## Publishing your plugin
+
+- npm is now the home of all core cordova plugins
+- You'll need a package.json if you want to publish ...
+                </section>
+                
+                <!-- ======================================= -->
+                <section data-markdown>
+## Plugman can do that too!
+    
+    plugman createpackagejson path/to/my/plugin/
+    
+    // show me!
+    
+    npm publish
+    
+                </section>
+
+                <!-- ======================================= -->
+                <section data-markdown>
+## What can plugins do?
+
+- plugable, adds some functionality
+- could be adding the functionality at runtime, build time, or install time
+
+                </section>
+
+                <!-- ======================================= -->
+                <section data-markdown>
+### Plugins at runtime
+
+- providing a UI framework, or helper mvc frameworks
+- exposing native functions
+- provide hooks for QA, debug-logging
+- analytics
+
+                </section>
+                
+                <!-- ======================================= -->
+                <section data-markdown>
+### Plugins at build time
+
+- transpile ES6 to js-now, typescript, coffee-script 
+  - _is coffee-script still a thing?_ NO!
+- SASS/less pre-processing
+- image inlining / webpack
+- could be doing analysis
+  - code coverage, linting, quality checks
+
+                </section>
+
+                <section data-markdown>
+### Plugins at install time
+
+- could also bundle other plugins, a mashup
+- could provide tests for another plugin
+
+                </section>
+                
+                <section data-markdown>
+### A more complex plugin demo
+
+<a href="http://github.com/purplecabbage/phonegap-plugin-sidebar" target="_blank">phonegap-plugin-sidebar</a>
+
+This plugin includes a demo!
+
+                </section>
+
+                <section data-markdown>
+
+### Note how that demo was installed!
+
+It could also be:
+
+    git clone git@github.com:purplecabbage/phonegap-plugin-sidebar.git
+    cordova plugin install ../phonegap-plugin-sidebar --link
+
+
+                </section>                
+
+                <!-- ======================================= -->
+                
+<section data-markdown>
+<h2>Plugin testing</h2>
+<p><strong>cordova-medic</strong> is a test tool which is designed to run ALL the plugin tests</p>
+
+- tests are written in Jasmine 2.0
+- tests run asyncronously
+- plugins have a dependent test/ plugin which is installed separately
+  - by convention
+
+<a href="http://github.com/apache/cordova-plugin-device" target="_blank">cordova-plugin-device</a>
+</section>
+
+                <!-- ======================================= -->
+                
+                <section data-markdown>
+Many of the pieces of cordova-medic are reusable, so I spun them into another purpose based tool
+                    
+
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section data-markdown>
+## cordova-paramedic
+
+_provides advanced levels of care at the point of illness or injury, including out of hospital treatment, and diagnostic services_
+
+    cordova-paramedic --platform ios --plugin .
+    
+                </section>
+                
+                <section data-markdown>
+  ## automates jasmine test running
+  
+  - creates a new project (in temp)
+  - adds the platform specified (ios|android|windows)
+  - installs the cordova-plugin-test-framework plugin
+  - installs the plugin specified
+  - installs the plugin's tests ( a plugin ... from the test/ folder )
+  - sets the start page to cordova-plugin-test-framework plugins test runner page
+  - creates a local server to listen for results posted back from the test runner
+  - exits with success/fail based on results        
+  
+                </section>  
+
+                <section data-markdown>                   
+## Some caveats
+
+  - only supports npm published platforms
+
+
+```
+    // this will not work currently!
+    cordova-paramedic --platform /Repos/cordova/cordova-ios --plugin .
+```
+                </section>    
+                
+                <!-- ======================================= -->
+                
+                <section data-markdown>  
+
+## How to write tests
+
+- copy a core plugin, really, it's what I do
+- create a test/ folder in your plugin repo
+- add a plugin.xml file
+
+                </section>
+
+                <section data-markdown>      
+## Debugging Native Code in XCode
+
+                </section>    
+                
+                <!-- ======================================= -->                
+
+                <section data-markdown>      
+## Debugging Windows JS code in Visual Studio
+
+                </section>   
+                
+                <section data-markdown>      
+## The Windows Bridge
+
+- there isn't one
+- js is a first class citizen
+- windows exec uses a proxy
+
+<a href="http://github.com/apache/cordova-plugin-device" target="_blank">cordova-plugin-device</a>
+                </section>                   
+                
+                <!-- ======================================= -->                
+
+                <section data-markdown>      
+                    
+## Publishing your plugin
+
+- `npm publish`
+- shine! profit! 
+
+                </section>                                
+                
+                <!-- ======================================= -->
+                
+                <section data-markdown> 
+                    
+## Docs
+
+- Of course you should include docs, so users know how to use your plugin
+- Look at any of the 'core' plugins for best practices.
+- English in the root README.md
+- translations in the docs/ folder
+
+                </section>
+
+                <section data-markdown>
+
+## Hooks
+
+Great guide here:
+
+https://cordova.apache.org/docs/en/latest/guide/appdev/hooks/   
+
+A cool hook example here:
+
+https://github.com/stevengill/es6-phonegap                 
+
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section data-markdown> 
+## Homework
+- Extend a plugin, remix it, remux it ex. The globalization plugin is async, which is really irritating.  
+	https://github.com/apache/cordova-plugin-globalization
+-- All formatting/globalization info could be fetched up front, and then processing could happen NSYNC
+
+                </section>
+                
+                <!-- ======================================= -->
+                
+                <section>
+                     <h2>Questions?</h2>
+                     <p>twitter.com/purplecabbage</p>
+                </section>
+                
+                <section>
+                     <h2>One more thing, or a few ...</h2>
+                     <ul>
+                         <li>Some platforms support plugins that are separate projects</li>
+                         <li>Some plugins reference third party libraries.</li>
+                         <li>Cocoapod support is available to iOS</li>
+                         <li>gradle support exists in Android, plugins can actually be AARs</li>
+                     </ul>
+                </section>
+
+            </div>
+        </div>
+        
+ <script src="../reveal/lib/js/head.min.js"></script>
+        <script src="../reveal/js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: '../reveal/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+    </body>
+</html>
